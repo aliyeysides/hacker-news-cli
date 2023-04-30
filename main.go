@@ -21,12 +21,12 @@ func main() {
 		panic(err)
 	}
 
-  for i, j := 0, len(stories)-1; i < j; i, j = i+1, j-1 {
-    stories[i], stories[j] = stories[j], stories[i]
-  }
+	for i, j := 0, len(stories)-1; i < j; i, j = i+1, j-1 {
+		stories[i], stories[j] = stories[j], stories[i]
+	}
 
 	for _, story := range stories[:10] {
-    println(string(story))
+		println(string(story))
 		resp, err := http.Get("https://hacker-news.firebaseio.com/v0/item/" + string(story) + ".json")
 		if err != nil {
 			panic(err)
