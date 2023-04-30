@@ -5,9 +5,7 @@ import (
 	"net/http"
 )
 
-// create a function that fetches the latest hacker news stories and returns json
 func FetchNewStories() ([]byte, error) {
-	// fetch the latest hacker news stories
 	resp, err := http.Get("https://hacker-news.firebaseio.com/v0/newstories.json")
 	if err != nil {
 		return nil, err
@@ -23,7 +21,6 @@ func main() {
 		panic(err)
 	}
 
-  // reverse the stories
   for i, j := 0, len(stories)-1; i < j; i, j = i+1, j-1 {
     stories[i], stories[j] = stories[j], stories[i]
   }
