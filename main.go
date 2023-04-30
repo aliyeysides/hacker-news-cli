@@ -15,18 +15,23 @@ func FetchNewStories() ([]byte, error) {
 	return b, nil
 }
 
+func reverse(s []byte) []byte {
+  for i := 0; i < len(s)/2; i++ {
+    j := len(s) - 1 - i
+    s[i], s[j] = s[j], s[i]
+  }
+  return s
+}
+
 func main() {
 	stories, err := FetchNewStories()
 	if err != nil {
 		panic(err)
 	}
 
-	for i, j := 0, len(stories)-1; i < j; i, j = i+1, j-1 {
-		stories[i], stories[j] = stories[j], stories[i]
-	}
+  reverse(stories)
 
 	for _, story := range stories[:10] {
-		println(string(story))
 		resp, err := http.Get("https://hacker-news.firebaseio.com/v0/item/" + string(story) + ".json")
 		if err != nil {
 			panic(err)
