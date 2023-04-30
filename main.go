@@ -16,11 +16,11 @@ func FetchNewStories() ([]byte, error) {
 }
 
 func reverse(s []byte) []byte {
-  for i := 0; i < len(s)/2; i++ {
-    j := len(s) - 1 - i
-    s[i], s[j] = s[j], s[i]
-  }
-  return s
+	for i := 0; i < len(s)/2; i++ {
+		j := len(s) - 1 - i
+		s[i], s[j] = s[j], s[i]
+	}
+	return s
 }
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 		panic(err)
 	}
 
-  reverse(stories)
+	reverse(stories)
 
 	for _, story := range stories[:10] {
 		resp, err := http.Get("https://hacker-news.firebaseio.com/v0/item/" + string(story) + ".json")
